@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>О нас</title>
+  <style>
+    /* Основной стиль страницы с тёмным фоном */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background-color: #1a202c; /* аналог bg-gray-900 */
+      color: #e2e8f0; /* светлый текст */
+    }
+    /* Фоновое изображение с блюром */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://images.unsplash.com/photo-1454496522488-7a8e488e8606") no-repeat center center fixed;
+      background-size: cover;
+      filter: blur(8px);
+      z-index: -2;
+    }
+    /* Затемнённый оверлей для улучшения читаемости */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: -1;
+    }
+    /* Стили модального окна */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal {
+      background: #2d3748; /* чуть светлее, чем bg-gray-900 */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 300px;
+      width: 90%;
+    }
+    .modal h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .modal p {
+      margin: 10px 0;
+      color: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Фоновое изображение с блюром -->
+  <div class="background"></div>
+  
+  <!-- Затемнённый оверлей -->
+  <div class="overlay"></div>
+  
+  <!-- Модальное окно -->
+  <div class="modal-overlay">
+    <div class="modal">
+      <h2>Команда проекта</h2>
+      <p>Рустам Комаров — разработчик</p>
+      <p>Анастасия Подколзина — Лидер</p>
+      <p>Елизавета Шорохова — Помощник</p>
+    </div>
+  </div>
+</body>
+</html>
