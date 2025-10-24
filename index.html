@@ -1,652 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Глобальные Проблемы Земли</title>
-    <style>
-      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-      
-      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-      
-      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
-      
-      /*! tailwindcss v3.4.11 | MIT License | https://tailwindcss.com*/
-      *,
-      :after,
-      :before {
-        border: 0 solid #e5e7eb;
-        box-sizing: border-box;
-      }
-      :after,
-      :before {
-        --tw-content: "";
-      }
-        <style>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Глобальные Проблемы Земли — Remaster</title>
+  <link rel="icon" href="https://i.imgur.com/I3FPQGQ.jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#9aa4b2;
+      --accent:#10b981; /* emerald */
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; background: linear-gradient(180deg,#071022 0%, #0b1220 100%); color:#e6eef6}
+    a{color:inherit;text-decoration:none}
+    header.site-header{background:linear-gradient(90deg, rgba(16,185,129,0.08), rgba(59,130,246,0.06));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
 
-  /* Контейнер с закруглённым зелёным фоном */
-    .rounded-background {
-      background-color: #28a745; /* зелёный */
-      border-radius: 30px; /* скруглённые углы */
-      padding: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* navbar */
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .brand h1{font-size:18px;margin:0;font-weight:700}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--muted);font-weight:600;padding:8px 10px;border-radius:8px}
+    .nav-links a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
+    .cta{background:var(--accent);color:#022; padding:10px 16px;border-radius:12px;font-weight:700}
+
+    /* hero */
+    .hero{position:relative;display:grid;align-items:center;gap:24px;padding:48px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .hero h2{font-size:40px;line-height:1.02;margin:0}
+    .hero p{color:var(--muted);max-width:70%}
+    .hero .hero-cta{display:flex;gap:12px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#021528;padding:12px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .hero-image{border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(2,6,23,0.6)}
+    .hero-image img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* grid of problems */
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .card{background:linear-gradient(180deg,var(--card),rgba(11,18,34,0.6));border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 24px rgba(2,6,23,0.5);transition:transform .18s ease,box-shadow .18s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(2,6,23,0.7)}
+    .card .icon{width:48px;height:48px;border-radius:10px;display:inline-grid;place-items:center;background:rgba(255,255,255,0.03);font-size:28px}
+    .card h3{margin:12px 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media(max-width:1024px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero p{max-width:100%}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      .container{padding:16px}
+      .grid{grid-template-columns:1fr}
+      .brand h1{font-size:16px}
+      .hero h2{font-size:28px}
     }
 
-    /* Стили кнопки */
-    .rounded-button {
-      padding: 16px 32px;
-      font-size: 18px;
-      color: #ffffff;
-      background-color: #218838; /* немного более тёмный зелёный для кнопки */
-      border: none;
-      border-radius: 30px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-      :host,
-      html {
-        line-height: 1.5;
-        -webkit-text-size-adjust: 100%;
-        font-family:
-          Open Sans,
-          ui-sans-serif,
-          system-ui,
-          sans-serif,
-          Apple Color Emoji,
-          Segoe UI Emoji,
-          Segoe UI Symbol,
-          Noto Color Emoji;
-        font-feature-settings: normal;
-        font-variation-settings: normal;
-        -moz-tab-size: 4;
-        tab-size: 4;
-        -webkit-tap-highlight-color: transparent;
-        display: flex;
-      }
-      body {
-        line-height: inherit;
-        margin: 0;
-        display: flex;
-      }
-      hr {
-        border-top-width: 1px;
-        color: inherit;
-        height: 0;
-      }
-      abbr:where([title]) {
-        text-decoration: underline dotted;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-size: inherit;
-        font-weight: inherit;
-      }
-      a {
-        color: inherit;
-        text-decoration: inherit;
-      }
-      b,
-      strong {
-        font-weight: bolder;
-      }
-      code,
-      kbd,
-      pre,
-      samp {
-        font-family:
-          ui-monospace,
-          SFMono-Regular,
-          Menlo,
-          Monaco,
-          Consolas,
-          Liberation Mono,
-          Courier New,
-          monospace;
-        font-feature-settings: normal;
-        font-size: 1em;
-        font-variation-settings: normal;
-      }
-      small {
-        font-size: 80%;
-      }
-      sub,
-      sup {
-        font-size: 75%;
-        line-height: 0;
-        position: relative;
-        vertical-align: baseline;
-      }
-      sub {
-        bottom: -0.25em;
-      }
-      sup {
-        top: -0.5em;
-      }
-      table {
-        border-collapse: collapse;
-        border-color: inherit;
-        text-indent: 0;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        color: inherit;
-        font-family: inherit;
-        font-feature-settings: inherit;
-        font-size: 100%;
-        font-variation-settings: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        line-height: inherit;
-        margin: 0;
-        padding: 0;
-      }
-      button,
-      select {
-        text-transform: none;
-      }
-      button,
-      input:where([type="button"]),
-      input:where([type="reset"]),
-      input:where([type="submit"]) {
-        -webkit-appearance: button;
-        background-color: transparent;
-        background-image: none;
-      }
-      :-moz-focusring {
-        outline: auto;
-      }
-      :-moz-ui-invalid {
-        box-shadow: none;
-      }
-      progress {
-        vertical-align: baseline;
-      }
-      ::-webkit-inner-spin-button,
-      ::-webkit-outer-spin-button {
-        height: auto;
-      }
-      [type="search"] {
-        -webkit-appearance: textfield;
-        outline-offset: -2px;
-      }
-      ::-webkit-search-decoration {
-        -webkit-appearance: none;
-      }
-      ::-webkit-file-upload-button {
-        -webkit-appearance: button;
-        font: inherit;
-      }
-      summary {
-        display: flex;
-      }
-      blockquote,
-      dd,
-      dl,
-      figure,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      hr,
-      p,
-      pre {
-        margin: 0;
-      }
-      fieldset {
-        margin: 0;
-      }
-      fieldset,
-      legend {
-        padding: 0;
-      }
-      menu,
-      ol,
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      dialog {
-        padding: 0;
-      }
-      textarea {
-        resize: vertical;
-      }
-      input::placeholder,
-      textarea::placeholder {
-        color: #9ca3af;
-        opacity: 1;
-      }
-      [role="button"],
-      button {
-        cursor: pointer;
-      }
-      :disabled {
-        cursor: default;
-      }
-      audio,
-      canvas,
-      embed,
-      iframe,
-      img,
-      object,
-      svg,
-      video {
-        display: block;
-        vertical-align: middle;
-      }
-      img,
-      video {
-        height: auto;
-        max-width: 100%;
-      }
-      [hidden] {
-        display: none;
-      }
-      *,
-      :after,
-      :before {
-        --tw-border-spacing-x: 0;
-        --tw-border-spacing-y: 0;
-        --tw-translate-x: 0;
-        --tw-translate-y: 0;
-        --tw-rotate: 0;
-        --tw-skew-x: 0;
-        --tw-skew-y: 0;
-        --tw-scale-x: 1;
-        --tw-scale-y: 1;
-        --tw-pan-x: ;
-        --tw-pan-y: ;
-        --tw-pinch-zoom: ;
-        --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position: ;
-        --tw-gradient-via-position: ;
-        --tw-gradient-to-position: ;
-        --tw-ordinal: ;
-        --tw-slashed-zero: ;
-        --tw-numeric-figure: ;
-        --tw-numeric-spacing: ;
-        --tw-numeric-fraction: ;
-        --tw-ring-inset: ;
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: rgba(59, 130, 246, 0.5);
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 #0000;
-        --tw-shadow: 0 0 #0000;
-        --tw-shadow-colored: 0 0 #0000;
-        --tw-blur: ;
-        --tw-brightness: ;
-        --tw-contrast: ;
-        --tw-grayscale: ;
-        --tw-hue-rotate: ;
-        --tw-invert: ;
-        --tw-saturate: ;
-        --tw-sepia: ;
-        --tw-drop-shadow: ;
-        --tw-backdrop-blur: ;
-        --tw-backdrop-brightness: ;
-        --tw-backdrop-contrast: ;
-        --tw-backdrop-grayscale: ;
-        --tw-backdrop-hue-rotate: ;
-        --tw-backdrop-invert: ;
-        --tw-backdrop-opacity: ;
-        --tw-backdrop-saturate: ;
-        --tw-backdrop-sepia: ;
-        --tw-contain-size: ;
-        --tw-contain-layout: ;
-        --tw-contain-paint: ;
-        --tw-contain-style: ;
-      }
-      ::backdrop {
-        --tw-border-spacing-x: 0;
-        --tw-border-spacing-y: 0;
-        --tw-translate-x: 0;
-        --tw-translate-y: 0;
-        --tw-rotate: 0;
-        --tw-skew-x: 0;
-        --tw-skew-y: 0;
-        --tw-scale-x: 1;
-        --tw-scale-y: 1;
-        --tw-pan-x: ;
-        --tw-pan-y: ;
-        --tw-pinch-zoom: ;
-        --tw-scroll-snap-strictness: proximity;
-        --tw-gradient-from-position: ;
-        --tw-gradient-via-position: ;
-        --tw-gradient-to-position: ;
-        --tw-ordinal: ;
-        --tw-slashed-zero: ;
-        --tw-numeric-figure: ;
-        --tw-numeric-spacing: ;
-        --tw-numeric-fraction: ;
-        --tw-ring-inset: ;
-        --tw-ring-offset-width: 0px;
-        --tw-ring-offset-color: #fff;
-        --tw-ring-color: rgba(59, 130, 246, 0.5);
-        --tw-ring-offset-shadow: 0 0 #0000;
-        --tw-ring-shadow: 0 0 #0000;
-        --tw-shadow: 0 0 #0000;
-        --tw-shadow-colored: 0 0 #0000;
-        --tw-blur: ;
-        --tw-brightness: ;
-        --tw-contrast: ;
-        --tw-grayscale: ;
-        --tw-hue-rotate: ;
-        --tw-invert: ;
-        --tw-saturate: ;
-        --tw-sepia: ;
-        --tw-drop-shadow: ;
-        --tw-backdrop-blur: ;
-        --tw-backdrop-brightness: ;
-        --tw-backdrop-contrast: ;
-        --tw-backdrop-grayscale: ;
-        --tw-backdrop-hue-rotate: ;
-        --tw-backdrop-invert: ;
-        --tw-backdrop-opacity: ;
-        --tw-backdrop-saturate: ;
-        --tw-backdrop-sepia: ;
-        --tw-contain-size: ;
-        --tw-contain-layout: ;
-        --tw-contain-paint: ;
-        --tw-contain-style: ;
-      }
-      #webcrumbs .absolute {
-        position: absolute;
-      }
-      #webcrumbs .relative {
-        position: relative;
-      }
-      #webcrumbs .left-0 {
-        left: 0;
-      }
-      #webcrumbs .top-0 {
-        top: 0;
-      }
-      #webcrumbs .mb-16 {
-        margin-bottom: 64px;
-      }
-      #webcrumbs .mb-2 {
-        margin-bottom: 8px;
-      }
-      #webcrumbs .mb-6 {
-        margin-bottom: 24px;
-      }
-      #webcrumbs .mb-8 {
-        margin-bottom: 32px;
-      }
-      #webcrumbs .mt-4 {
-        margin-top: 16px;
-      }
-      #webcrumbs .flex {
-        display: flex;
-      }
-      #webcrumbs .grid {
-        display: grid;
-      }
-      #webcrumbs .h-\[600px\] {
-        height: 600px;
-      }
-      #webcrumbs .h-full {
-        height: 100%;
-      }
-      #webcrumbs .w-full {
-        width: 100%;
-      }
-      #webcrumbs .max-w-3xl {
-        max-width: 48rem;
-      }
-      #webcrumbs .grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 6fr));
-      }
-      #webcrumbs .flex-row {
-        flex-direction: row;
-      }
-      #webcrumbs .items-center {
-        align-items: center;
-      }
-      #webcrumbs .justify-center {
-        justify-content: center;
-      }
-      #webcrumbs .justify-between {
-        justify-content: space-between;
-      }
-      #webcrumbs .gap-4 {
-        gap: 16px;
-      }
-      #webcrumbs .gap-6 {
-        gap: 24px;
-      }
-      #webcrumbs :is(.space-x-4 > :not([hidden]) ~ :not([hidden])) {
-        --tw-space-x-reverse: 0;
-        margin-left: calc(16px * (1 - var(--tw-space-x-reverse)));
-        margin-right: calc(16px * var(--tw-space-x-reverse));
-      }
-      #webcrumbs :is(.space-x-8 > :not([hidden]) ~ :not([hidden])) {
-        --tw-space-x-reverse: 0;
-        margin-left: calc(32px * (1 - var(--tw-space-x-reverse)));
-        margin-right: calc(32px * var(--tw-space-x-reverse));
-      }
-      #webcrumbs .overflow-hidden {
-        overflow: hidden;
-      }
-      #webcrumbs .rounded-xl {
-        border-radius: 36px;
-      }
-      #webcrumbs .bg-gray-800 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-      }
-      #webcrumbs .bg-gray-900 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-      }
-      #webcrumbs .bg-gradient-to-b {
-        background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-      }
-      #webcrumbs .from-black\/70 {
-        --tw-gradient-from: rgba(0, 0, 0, 0.7) var(--tw-gradient-from-position);
-        --tw-gradient-to: transparent var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-      }
-      #webcrumbs .to-black\/40 {
-        --tw-gradient-to: rgba(0, 0, 0, 0.4) var(--tw-gradient-to-position);
-      }
-      #webcrumbs .object-cover {
-        object-fit: cover;
-      }
-      #webcrumbs .p-6 {
-        padding: 24px;
-      }
-      #webcrumbs .p-8 {
-        padding: 32px;
-      }
-      #webcrumbs .px-4 {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-      #webcrumbs .px-8 {
-        padding-left: 32px;
-        padding-right: 32px;
-      }
-      #webcrumbs .py-16 {
-        padding-bottom: 64px;
-        padding-top: 64px;
-      }
-      #webcrumbs .text-center {
-        text-align: center;
-      }
-      #webcrumbs .text-2xl {
-        font-size: 24px;
-        line-height: 31.200000000000003px;
-      }
-      #webcrumbs .text-3xl {
-        font-size: 30px;
-        line-height: 36px;
-      }
-      #webcrumbs .text-4xl {
-        font-size: 36px;
-        line-height: 41.4px;
-      }
-      #webcrumbs .text-5xl {
-        font-size: 48px;
-        line-height: 52.800000000000004px;
-      }
-      #webcrumbs .text-xl {
-        font-size: 20px;
-        line-height: 28px;
-      }
-      #webcrumbs .font-bold {
-        font-weight: 700;
-      }
-      #webcrumbs .text-blue-500 {
-        --tw-text-opacity: 1;
-        color: rgb(59 130 246 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-emerald-500 {
-        --tw-text-opacity: 1;
-        color: rgb(16 185 129 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-gray-300 {
-        --tw-text-opacity: 1;
-        color: rgb(209 213 219 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-gray-400 {
-        --tw-text-opacity: 1;
-        color: rgb(156 163 175 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-green-500 {
-        --tw-text-opacity: 1;
-        color: rgb(34 197 94 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-indigo-500 {
-        --tw-text-opacity: 1;
-        color: rgb(99 102 241 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-lime-500 {
-        --tw-text-opacity: 1;
-        color: rgb(132 204 22 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-orange-500 {
-        --tw-text-opacity: 1;
-        color: rgb(249 115 22 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-pink-500 {
-        --tw-text-opacity: 1;
-        color: rgb(236 72 153 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-purple-500 {
-        --tw-text-opacity: 1;
-        color: rgb(168 85 247 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-red-500 {
-        --tw-text-opacity: 1;
-        color: rgb(239 68 68 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-rose-500 {
-        --tw-text-opacity: 1;
-        color: rgb(244 63 94 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-sky-500 {
-        --tw-text-opacity: 1;
-        color: rgb(14 165 233 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-teal-500 {
-        --tw-text-opacity: 1;
-        color: rgb(20 184 166 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-white {
-        --tw-text-opacity: 1;
-        color: rgb(255 255 255 / var(--tw-text-opacity));
-      }
-      #webcrumbs .text-yellow-500 {
-        --tw-text-opacity: 1;
-        color: rgb(234 179 8 / var(--tw-text-opacity));
-      }
-      #webcrumbs .shadow-lg {
-        --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -4px rgba(0, 0, 0, 0.1);
-        --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
-          0 4px 6px -4px var(--tw-shadow-color);
-      }
-      #webcrumbs .shadow-lg,
-      #webcrumbs .shadow-xl {
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-      }
-      #webcrumbs .shadow-xl {
-        --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
-          0 8px 10px -6px var(--tw-shadow-color);
-      }
-      #webcrumbs .transition-all {
-        transition-duration: 0.15s;
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      #webcrumbs .transition-colors {
-        transition-duration: 0.15s;
-        transition-property: color, background-color, border-color,
-          text-decoration-color, fill, stroke;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      #webcrumbs .duration-300 {
-        transition-duration: 0.3s;
-      }
-      #webcrumbs {
-        font-family: Open Sans !important;
-        font-size: 16px !important;
-      }
-      #webcrumbs .hover\:-translate-y-1:hover {
-        --tw-translate-y: -4px;
-      }
-      #webcrumbs .hover\:-translate-y-1:hover,
-      #webcrumbs .hover\:scale-110:hover {
-        transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-          rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-          scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-      }
-      #webcrumbs .hover\:scale-110:hover {
-        --tw-scale-x: 1.1;
-        --tw-scale-y: 1.1;
-      }
-      #webcrumbs .hover\:text-emerald-500:hover {
-        --tw-text-opacity: 1;
-        color: rgb(16 185 129 / var(--tw-text-opacity));
-      }
-      #webcrumbs .hover\:text-teal-600:hover {
-        --tw-text-opacity: 1;
-        color: rgb(13 148 136 / var(--tw-text-opacity));
-      }
-      #webcrumbs .hover\:shadow-2xl:hover {
-        --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-      }
-@media (orientation: portrait) {
-     #webcrumbs .grid-cols-4 {
-        grid-template-columns: repeat(2, minmax(0, 6fr));
-      }
-}
-    </style>
-  </head>
-  <body>
-    <div id="webcrumbs"><div class="bg-gray-900" style="font-family:Comic Sans MS"> <nav class="bg-gray-800 shadow-xl"> <div class="flex items-center justify-between p-6"> <div class="flex items-center space-x-4"> <span class="material-symbols-outlined text-3xl text-emerald-500">public</span> <h1 class="text-2xl font-bold text-white">Глобальные Проблемы Земли</h1> </div> <div class="flex items-center space-x-8"> <a href="#" class="text-gray-300 hover:text-emerald-500 transition-colors"> Главная </a> <a href="#" class="text-gray-300 hover:text-emerald-500 transition-colors"> Проблемы </a> <a href="#" class="text-gray-300 hover:text-emerald-500 transition-colors"> Решения </a> <a href="info" class="text-gray-300 hover:text-emerald-500 transition-colors"> О нас </a> </div> </div> </nav> <header class="relative h-[600px] overflow-hidden"> <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606" class="w-full h-full object-cover" alt="Снежные горы"/> <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/70 to-black/40 flex items-center justify-center"> <div class="text-center text-white max-w-3xl px-4"> <h1 class="text-5xl font-bold mb-6"> Решаем Глобальные <br/> Проблемы <br/> Вместе </h1> <p class="text-xl mb-8"> Присоединяйтесь к нашей миссии по созданию устойчивых решений самых актуальных проблем мира </p>  <a href="https://rusmer.github.io/GPEMap" class="rounded-button">Перейти к карте</a></div> </div> </header> <main class="py-16 px-8"> <div class="grid grid-cols-4 gap-6 mb-16"> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-red-500">thermostat</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Изменение Климата</h3> <p class="text-gray-400"> Решение глобального климатического кризиса через устойчивые решения и изменения в политике. </p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-blue-500">water_drop</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Нехватка Воды</h3> <p class="text-gray-400"> Обеспечение доступа к чистой воде для сообществ по всему миру через инновационные технологии. </p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-yellow-500">nutrition</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Продовольственная Безопасность</h3> <p class="text-gray-400">Развитие устойчивых сельскохозяйственных практик для борьбы с голодом.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-purple-500">health_and_safety</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Доступ к Здравоохранению</h3> <p class="text-gray-400"> Улучшение глобальных систем здравоохранения и обеспечение равного доступа к медицине. </p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-green-500">school</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Образовательный Разрыв</h3> <p class="text-gray-400"> Преодоление образовательного неравенства и продвижение доступного обучения. </p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-orange-500">diversity_3</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Социальное Неравенство</h3> <p class="text-gray-400">Работа по сокращению социального и экономического неравенства.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-pink-500">energy</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Энергетический Кризис</h3> <p class="text-gray-400">Разработка возобновляемых источников энергии для устойчивого будущего.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-teal-500 transition-all duration-300 hover:text-teal-600 hover:scale-110"> nature </span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Потеря Биоразнообразия</h3> <p class="text-gray-400">Защита исчезающих видов и сохранение природных экосистем.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-indigo-500">factory</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Промышленное Загрязнение</h3> <p class="text-gray-400">Борьба с промышленными выбросами и переход к чистому производству.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-rose-500">recycling</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Управление Отходами</h3> <p class="text-gray-400">Развитие систем переработки и сокращение количества отходов.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-lime-500">language</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Цифровое Неравенство</h3> <p class="text-gray-400">Преодоление разрыва в доступе к цифровым технологиям.</p> </div> <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"> <span class="material-symbols-outlined text-4xl text-sky-500">diversity_1</span> <h3 class="text-xl font-bold mt-4 mb-2 text-white">Миграционный Кризис</h3> <p class="text-gray-400">Поддержка беженцев и решение проблем вынужденной миграции.</p> </div> </div> </main> </div></div>
+    /* small utilities */
+    .muted{color:var(--muted)}
+    footer{border-top:1px solid rgba(255,255,255,0.03);padding:24px 0;margin-top:48px;color:var(--muted)}
 
-  </body>
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav" role="navigation" aria-label="Главная навигация">
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <span class="material-symbols-outlined" style="font-size:22px;color:white">public</span>
+        </div>
+        <div>
+          <h1>Глобальные Проблемы Земли</h1>
+          <div class="muted" style="font-size:12px">Устойчивые решения и сообщество</div>
+        </div>
+      </div>
+
+      <nav class="nav-links" aria-label="ссылки">
+        <a href="#" aria-current="page">Главная</a>
+        <a href="#problems">Проблемы</a>
+        <a href="#solutions">Решения</a>
+        <a href="/info">О нас</a>
+        <a class="cta" href="https://rusmer.github.io/GPEMap">К карте</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div>
+          <h2 id="hero-title">Решаем глобальные проблемы — вместе, эффективно, честно.</h2>
+          <p>Мы собираем знания, инициативы и технологии, чтобы создавать реальные, масштабируемые решения — от чистой воды до зелёной энергии и защиты биоразнообразия.</p>
+          <div class="hero-cta" style="margin-top:18px">
+            <a class="btn" href="https://rusmer.github.io/GPEMap">Открыть карту</a>
+            <a class="btn secondary" href="#problems">Изучить проблемы</a>
+          </div>
+        </div>
+
+        <div class="hero-image" aria-hidden>
+          <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=1200&auto=format&fit=crop" alt="Пейзаж — горы и небо"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="problems" class="container" aria-labelledby="problems-title">
+      <h2 id="problems-title" style="margin-bottom:18px">Приоритетные направления</h2>
+      <div class="grid" role="list">
+
+        <!-- card template: icon, title, description -->
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">thermostat</span></div>
+          <h3>Изменение климата</h3>
+          <p>Митигирование и адаптация: снижение выбросов, устойчивое планирование и восстановление экосистем.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">water_drop</span></div>
+          <h3>Нехватка воды</h3>
+          <p>Инновации в очистке, хранении и распределении воды для уязвимых сообществ.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">nutrition</span></div>
+          <h3>Продовольственная безопасность</h3>
+          <p>Устойчивое сельское хозяйство, сокращение потерь и улучшение доступа к продовольствию.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">health_and_safety</span></div>
+          <h3>Доступ к здравоохранению</h3>
+          <p>Укрепление систем здравоохранения и равный доступ к жизненно важным услугам.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">school</span></div>
+          <h3>Образование</h3>
+          <p>Снижение разрыва в образовании через цифровые и оффлайн инициативы.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">diversity_3</span></div>
+          <h3>Социальное неравенство</h3>
+          <p>Программы, направленные на сокращение экономического и социального разрыва.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">energy</span></div>
+          <h3>Энергетика</h3>
+          <p>Переход к возобновляемым источникам и повышение энергоэффективности.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="icon"><span class="material-symbols-outlined">nature</span></div>
+          <h3>Биоразнообразие</h3>
+          <p>Защита видов и сохранение природных экосистем для устойчивого будущего.</p>
+        </article>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>
+        <strong>Глобальные Проблемы Земли</strong>
+      </div>
+      <nav style="display:flex;gap:12px">
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Простая доступная навигация: добавляем smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          const el=document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    })
+  </script>
+</body>
 </html>
